@@ -171,17 +171,25 @@ $S^2 \ket{\psi} =\left( \begin{array}{cccc}
 \end{array} \right)\cdot\left(\begin{array}{c}
 a_0\\a_1\\a_2\\a_3
 \end{array}\right) =
-\left(\begin{array}{cccc}
-a_3 & a_2 & a_1 & a_0
+\left(\begin{array}{c}
+a_3 \\ a_2 \\ a_1 \\ a_0
 \end{array} \right)$\\
 (c) (3pts) Compute $\bras{\psi}(S\kets{\psi})$. \\
-$\braket{\psi}{(S_2\big|\psi)} =   
-\left(\begin{array}{c}
+$\braket{\psi}{(S\big|\psi)} = \left(\begin{array}{cccc}
+a_0 & a_1 & a_2 & a_3
+\end{array}\right)\cdot\left[\left( \begin{array}{cccc}
+ 0 & 0 & 1 & 0 \\
+ 1 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 1 \\
+ 0 & 1 & 0 & 0 \end{array}\right)\cdot\left(\begin{array}{c}
 a_0\\a_1\\a_2\\a_3
-\end{array}\right) \cdot \left(\begin{array}{cccc}
-a_3 & a_2 & a_1 & a_0
-\end{array} \right) =  
-a_0*a_3 +a_1*a_2 + a_2*a_1 + a_3*a_0\\ \hspace*{7.65cm} = (a_0*a_3)^2 + (a_1*a_2)^2$
+\end{array}\right)\right]$\\
+$\braket{\psi}{(S\big|\psi)} = \left(\begin{array}{cccc}
+a_0 & a_1 & a_2 & a_3
+\end{array}\right)\cdot\left(\begin{array}{c}
+a_2 \\ a_0 \\ a_3 \\ a_1
+\end{array}\right) = a_0a_2 + a_1a_0 + a_2a_3 + a_3a_1
+$
 \end{problem}\newpage
 \begin{problem}{Superdense Coding: 5pts}
 As learned from class we know that Alice can send two bits of message to Bob by using only one qubit, provided that the qubit she manipulates is already entangled with Bob. All Bob has to do is measure in the bell basis. In the lecture note, we have the state $\kets{\psi_{11}} = \frac{1}{\sqrt{2}} (\kets{01} -\kets{10})$ left un-verified. Please show that when Bob measure $\kets{\psi_{11}}$ in the bell basis, the system will collapse to $\kets{11}$.\\
