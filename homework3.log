@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.3)  19 NOV 2015 15:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.3)  19 NOV 2015 15:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1012,15 +1012,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 274--275
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 284.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 284.
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--281
+
+ []
+
+
+Overfull \hbox (21.73926pt too wide) in paragraph at lines 282--283
+[]\OT1/cmr/m/n/12 URL for pa-per ver-sion: http://home.lu.lv/ sd20008/papers/es
+says/Solovay-Kitaev.pdf 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 286.
+[5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 286.
  (./homework3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 284.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 284.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 286.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 286.
 Package rerunfilecheck Info: File `homework3.out' has not changed.
 (rerunfilecheck)             Checksum: D3C8A5444CD04F8140994999F8F4983F;365.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 284.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 286.
  ) 
 Here is how much of TeX's memory you used:
  19469 strings out of 493304
@@ -1044,7 +1055,7 @@ cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on homework3.pdf (5 pages, 164921 bytes).
+Output written on homework3.pdf (5 pages, 165388 bytes).
 PDF statistics:
  120 PDF objects out of 1000 (max. 8388607)
  97 compressed objects within 1 object stream
