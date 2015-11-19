@@ -1,0 +1,286 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{graphicx,ctable,booktabs, tikz}
+\usepackage{hyperref}
+\usepackage{listings} %for inserting code snippets
+%%%%%%%%%%%%%%%%%Quantum Circuist%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{etex}
+\usepackage[all]{xy}
+\SelectTips{em}{}
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+%\usepackage[all]{xy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{multicol}
+
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\E}{\mathrm{\mathbf{E}}}
+\newcommand{\Var}{\mathrm{\mathbf{Var}}}
+\newcommand{\EE}[1]{\E\left(#1\right)}
+\newcommand{\VV}[1]{\Var\left(#1\right)}
+\newcommand{\s}{\mathrm{span}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\sim}{\mathrm{sim}}
+\renewcommand{\prec}{\mathrm{prec}}
+\newcommand{\fail}{\mathrm{fail}}
+\newcommand{\median}{\mathrm{median}}
+\newcommand{\anc}{\mathrm{anc}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+% \newcommand{\ket}[1]{\left| #1\right\rangle}      % ket vector
+% \newcommand{\bra}[1]{\left\langle #1\right|}      % bra vector
+\newcommand{\kets}[1]{| #1 \rangle}                 % small ket vector
+\newcommand{\bras}[1]{\langle #1 |}                 % small bra vector
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}         % <x|y>
+\newcommand{\ii}{\mathbb{I}}
+
+% the I with two vertical lines
+\newcommand{\twonorm}[1]{\left\| #1\right\|_2}        % norm
+\newcommand{\inftynorm}[1]{\left\| #1\right\|_\infty}
+\newcommand{\norms}[1]{\big\| #1\big\|}          % norm
+
+\newcommand{\tr}{\mathrm{tr}}
+%\newcommand{\qed}{\hfill $\square$}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{remark}{Remark}
+
+
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \end{center}}
+\makeatother
+
+
+%
+%Fancy-header package to modify header/page numbering
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+\lhead{Problem \thesection}
+\chead{}
+\rhead{\thepage}
+\lfoot{\small\scshape CS 518}
+\cfoot{}
+\rfoot{\footnotesize }
+\renewcommand{\headrulewidth}{.3pt}
+\renewcommand{\footrulewidth}{.3pt}
+\setlength\voffset{-0.25in}
+\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\NN{\mathbb{N}}
+\def\ket#1{\big|{#1}\big>}
+\def\bra#1{\big<{#1}\big|}
+\def\braket#1#2{\big<{#1}\big|{#2}\big>}
+\def\ketbra#1{\big|{#1}\big>\big<{#1}\big|}
+\def\sqtwo{\sqrt{2}}
+\pagestyle{empty}
+\begin{document}
+\centerline{\bf CSC518  \hfill HW \#3}
+\centerline{\bf NAME: Alexander Jansing and Brittany Zeo \hfill \today}
+
+\
+
+\noindent
+
+\begin{problem}{Simon's Algorithm: 28 pts}
+Suppose we run Simon's algorithm on the following input $x$ (with $N = 8$ and hence $n = 3$):  We have
+$$\begin{array}{cc}
+x_{000} = x_{111} = 000 & x_{001} = x_{110} = 001\\
+x_{010} = x_{101} = 010 & x_{011} = x_{100} = 011
+\end{array}
+$$
+Note that $x$ is $2$-to-$1$ and $x_i = x_{i\oplus 111}$ for all $i \in \{0,1\}^3$, so $s = 111$.
+\begin{enumerate}
+\item[a] Give the starting state of Simon's algorithm.\\
+$$\begin{array}{ccc}
+U_f\ket{x}\ket{0}^{\otimes n} &=& \ket{x}\ket{0\oplus f(x)}\\
+\otimes_{l = 0}^n\ket{0} &=& \otimes_{l = 0}^3\ket{0}
+\end{array} $$
+\item[b] Give the state after the first Hadamard transforms on the first 3 qubits.\\
+$$\begin{array}{ccc}
+H^{\otimes n}\ket{x} &=& \frac{1}{\sqrt{2^n}}\sum\limits_{z\in\{0,1\}^n}(-1)^{x\cdot z}\ket{z},\\
+H^{\otimes 3}\ket{x} &=& \frac{1}{\sqrt{8}}\sum\limits_{z\in\{0,1\}^3}(-1)^{x\cdot z}\ket{z} \otimes \ket{0}.
+\end{array} $$
+\item[c] Give the state after applying the oracle.\\
+$$\begin{array}{ccc}
+\frac{1}{\sqrt{2^{n-1}}}\sum\limits_{x\in 1}\frac{1}{\sqrt{2}}(\ket{x} + \ket{x\oplus s})\ket{f(x)}\\
+\frac{1}{2}\sum\limits_{x\in 1}\frac{1}{\sqrt{2}}(\ket{x} + \ket{x\oplus s})\ket{f(x)}\\
+\end{array}$$
+\item[d] Give the state after measuring the second register (the measurement gave $\ket{001}$).\\
+Measurement collapses the state and since the measurement gave $\ket{001}$, it is also the state; normalizing to $1$. 
+\item[e] Use $H^{\otimes n}\ket{i} = \frac{1}{\sqrt{2^n}}\sum\limits_{j\in\{0,1\}^n}(-1)^{i\cdot j}\ket{j}$ to give the state after the final Hadamard.\\
+$H^{\otimes n}\ket{i} = \frac{1}{\sqrt{2^n}}\sum\limits_{j\in\{0,1\}^n}(-1)^{i\cdot j}\ket{j}$\\
+$H^{\otimes n}(\frac{1}{\sqrt{2}}\left[\ket{000...0}+\ket{s}\right]) = \frac{1}{\sqrt{2^{n+1}}}\sum\limits_{j\in\{0,1\}^n}(2)\ket{j}$\\
+$\frac{1}{\sqrt{2^{n})}}\sum\limits_{j\in s^\perp}\ket{j}$\\
+
+\item[f] Why does measurement of the first $3$ qubits of the final state give the information about $s$?\\
+Because the bits in the first register are in a superpositioned state and as they pass through $U_f$ they output the state that is the \texttt{XOR} of the second register and $s$.
+\item[g] Suppose the first run of the algorithm give $j = 011$ and the second run gives $j = 101$. Show that, assuming $s \neq 000$, those two runs already determine $s$.\\
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Fourier Transform: 30 pts}
+\begin{enumerate}
+\item[a] For $\omega = e^{\frac{2\pi i}{3}}$ and $F_3  = \frac{1}{\sqrt{3}}\left(\begin{array}{ccc}
+																      1&1&1\\
+																      1&\omega&\omega^2\\
+																      1&\omega^2&\omega\\
+																	  \end{array}  \right)$
+, calculated $F_3\left(\begin{array}{c}
+0\\1\\0
+\end{array}  \right)$ and  $F_3\left(\begin{array}{c}
+1\\\omega^2\\\omega
+\end{array}  \right)$.\\
+\begin{enumerate}
+\item[$\cdot$] $F_3\left(\begin{array}{c}
+0\\1\\0
+\end{array}  \right) = \frac{1}{\sqrt{3}}\left(\begin{array}{c}1\\\omega^2\\\omega^2\end{array}\right)$
+\item[$\cdot$] $F_3\left(\begin{array}{c}
+1\\\omega^2\\\omega
+\end{array}  \right) = \frac{1}{\sqrt{3}}\left(\begin{array}{c}\omega + \omega^2 + 1 \\ 2\omega^3 + 1 \\ \omega^2 + \omega^4 + 1\end{array}\right)$
+\end{enumerate}
+\item[b] Let the Fourier transform defined as what we described in class, \emph{i.e.} $\omega = e^{\frac{2\pi i}{N}}$ and entry at location $(i,j)$ is $e^{\frac{2\pi ijk}{N}}$ where $0 \leq j,k < N$. Let $\ket{C_k}$ be the $k^{th}$ column of $F_N$. Please show that
+$$\braket{C_k'}{C_k} = \begin{cases}
+						1 \text{ if } k = k'\\
+						0 \text{ if } k \neq k'\\
+					  \end{cases}$$
+A Fourier transform square matrix of size $N$ can be seen as such,\\
+$$\frac{1}{\sqrt{N}}\left(\begin{array}{ccccccc}
+1 & 1 & 1 & \cdots & \cdots & \cdots & 1\\
+1 & \omega & \omega^{1*2} &\ddots&&& \omega^{1*(N-1)}\\
+1 & \omega^{2*1} & \omega^{2*2} &&\ddots&& \omega^{2*(N-1)}\\
+\vdots & \vdots & \vdots &&&\ddots& \vdots\\
+1 & \omega^{(N-1)*1} &&&\cdots&& \omega^{(N-1)*(N-1)}
+\end{array}\right)$$
+We know that QFT matrices are \emph{unitary} and therefore the column vectors are linearly independent. Therefore each column vector is ``parallel" to itself, and its $\braket{C_k'}{C_k} = 1$, and is orthogonal to the other column vectors in $N$-space, so $\braket{C_k'}{C_k} = 0$.
+%That is to say, when we find the inner product between columns of a Fourier transform square matrix, we're looking at
+%$$\frac{1}{\sqrt{N}}\left(\begin{array}{cccc}
+%1& \overline{\omega^{1*k'}} & \cdots & \overline{\omega^{(N-1)*k'}}
+%\end{array}\right) \cdot \frac{1}{\sqrt{N}}\left(\begin{array}{c}
+%\omega^{0*k}\\
+%\omega^{1*k}\\
+%\vdots\\
+%\omega^{(N-1)*k}
+%\end{array}\right)$$ $$ = \frac{1}{N}(1+ \overline{\omega^{k}}\omega{k} + \cdots + \overline{\omega^{(N-1)*k'}}\omega^{(N-1)*k}).$$
+%If $k \neq k'$, then we have
+%$$\frac{1}{N}(1+ \omega^{k' + k} + \cdots + \omega^{(N-1)*(k' +k)}).$$
+%And if $k = k'$, then we have
+%$$\frac{1}{N}(1+ \omega^{2k} + \cdots + \omega^{2(N-1)*k}).$$
+%Then to each other these, we can expand:
+%\begin{enumerate}
+%\item[$k\neq k':$] $\frac{1}{N}+ \frac{e^{\frac{2\pi i(k' + k)}{N}}}{N} + \cdots + \frac{e^{\frac{2\pi i(N-1)*(k' +k)}{N}}}{N} = 0.$\\
+%                   $\left(\frac{1}{N}+ \frac{e^{\frac{2\pi i(k' + k)}{N}}}{N} + \cdots + \frac{e^{\frac{(2\pi i(N-1)*(k' +k)}{N}}}{N}\right)*N = 0*N.$\\
+%                   $\left(1+ e^{\frac{2\pi i(k' + k)}{N}} + \cdots + e^{\frac{2\pi i(N-1)*(k' +k)}{N}}\right)*e^{\frac{2\pi i}{N}} = 0*e^{\frac{2\pi i}{N}}$\\
+%                   $\left((e^{\frac{2\pi i}{N}}*e^{\frac{2\pi i}{N}})+ e^{\frac{2\pi i(k' + k) + 2\pi i}{N}} + \cdots + e^{\frac{2\pi i(N-1)*(k' +k) + 2\pi i}{N}}\right) = 0*e^{\frac{2\pi i}{N}}$\\
+%                   $\left(1+ e^{\frac{2\pi i(k' + k) + 2\pi i}{N}} + \cdots + e^{\frac{2\pi i(N)*(k' +k)}{N}}\right) = 0$\\
+%                   $\left(1+ e^{\frac{2\pi i(k' + k)}{N}} + \cdots + e^{2\pi i*(k' +k)}\right) = 0$\\
+%
+%\end{enumerate}
+\newpage
+\item[c] Prove the identity in equation 7.1.18 in the textbook.\\
+Identity 7.1.18 states, for some binary $w = 0.x_1x_2\cdots$\\
+\textbf{Is it a typo in the book when it says, ``$\sum\limits_{y=0}^{2^n-1}$?" Shouldn't it be $\sum\limits_{y=0}^{2^{n-1}}$?}\\
+\hspace*{2cm} $\frac{1}{\sqrt{2^n}}\sum\limits_{y=0}^{2^{n-1}}e^{2\pi i wy}\ket{y} = \left( \frac{\ket{0} + e^{2\pi i(2^{n-1}w)}\ket{1}}{\sqrt{2}} \right) \otimes \left( \frac{\ket{0} + e^{2\pi i(2^{n-2}w)}\ket{1}}{\sqrt{2}} \right) \otimes \cdots\\ \hspace*{11cm} \cdots \otimes \left( \frac{\ket{0} + e^{2\pi i(w)}\ket{1}}{\sqrt{2}} \right)$.\\
+So, we know in a general case from the notes,\\
+$\begin{array}{ccccccc}
+\mu^{2^0}\ket{\psi} &=& e^{2\pi i(w)} &=& e^{2\pi i(0.x_1x_2\cdots)} &=& \left( \frac{\ket{0} + e^{2\pi i(0.x_1x_2\cdots)}\ket{1}}{\sqrt{2}} \right)\\
+\mu^{2^1}\ket{\psi} &=& e^{2\pi i(2^1w)} &=& e^{2\pi i(x_1.x_2x_3\cdots)} &=& \left( \frac{\ket{0} + e^{2\pi i(0.x_2x_3\cdots)}\ket{1}}{\sqrt{2}} \right)\\
+&&&\vdots&&&\\
+\mu^{2^{n-1}}\ket{\psi} &=& e^{2\pi i(2^{n-1}w)} &=& e^{2\pi i(x_1\cdots x_{n-1}.x_n)} &=& \left( \frac{\ket{0} + e^{2\pi i(0.x_n)}\ket{1}}{\sqrt{2}} \right)\\
+\end{array}$\\
+So $\sum\limits_{y=0}^{2^{n-1}}e^{2\pi i wy}\ket{y} = \left( \frac{\ket{0} + e^{2\pi i(2^{n-1}w)}\ket{1}}{\sqrt{2}} \right) \otimes \left( \frac{\ket{0} + e^{2\pi i(2^{n-2}w)}\ket{1}}{\sqrt{2}} \right) \otimes \cdots \otimes \left( \frac{\ket{0} + e^{2\pi i(w)}\ket{1}}{\sqrt{2}} \right)$ easily follows.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Euclidean distance: 12 pts}
+\emph{The Euclidean distance} between two states $\ket{\phi} = \sum_i\alpha_i\ket{i}$ and $\ket{\psi} = \sum_i\beta_i\ket{i}$ and $\left|\left|\ket{\phi}-\ket{\psi}\right|\right| = \sqrt{\sum_i\left| \alpha_i - \beta_i\right|^2}$. Assume the states are unit vectors with real amplitudes. Suppose the distance is small: $\left|\left|\ket{\phi}-\ket{\psi}\right|\right| = \epsilon$. Show that the probabilities resulting from a measurement on the two states are also close: $\sqrt{\sum_i\left| \alpha_i^2 - \beta_i^2\right|} \leq 2\epsilon$ (Hint: use \emph{Cauchy-Schwarz} inequality).\\
+$$\begin{array}{ccc}
+\sqrt{\sum_i|\alpha_i - \beta_i|^2} &\leq & \sqrt{\sum_i|\alpha_i^2 - \beta_i^2|^2}\\
+\sqrt{\sum_i|\alpha_i^2 - \beta_i^2|^2} &=& \sqrt{\sum_i\left(|\alpha_i - \beta_i|*|\alpha_i + \beta_i|\right)^2}\\
+\sqrt{\sum_i\left(|\alpha_i - \beta_i|*|\alpha_i + \beta_i|\right)^2} & \leq & \sqrt{\sum_i|\alpha_i - \beta_i|^2*\sum_i|\alpha_i + \beta_i|^2}\\
+\cdots & & \sqrt{\epsilon^2*\sum_i|\alpha_i + \beta_i|^2}\\
+\sqrt{\epsilon^2*\sum_i|\alpha_i + \beta_i|^2} &=& \epsilon\sqrt{\sum_i|\alpha_i + \beta_i|^2}\\
+\epsilon\sqrt{\sum_i|\alpha_i + \beta_i|^2} &\leq & \epsilon*\left(\sum_i|\alpha_i|^2 + \sum_i|\beta_i|^2\right)\\
+\epsilon*\left(\sum_i|\alpha_i|^2 + \sum_i|\beta_i|^2\right)  &=& \epsilon*2
+\end{array} $$
+\end{problem}
+
+\begin{problem}{Analysis Technique Proof: 10 pts}
+In quantum counting or the hard case analysis of Shor’s algorithm, the following
+analysis technique is commonly used: $\left| 1 - e^{i\theta} \right| = 2\left| \sin (\frac{\theta}{2})\right|$ Please prove this equality.\\
+\begin{center}
+$\begin{array}{cccc}
+\left| 1 - e^{i\theta} \right| &=& 2\left| \sin (\frac{\theta}{2})\right|\\
+\left| 1 - (\cos (\theta) + i\sin (\theta)) \right| &=& 2\left| \sin (\frac{\theta}{2})\right|\\
+\left| 1 - \cos (\theta) - i\sin (\theta)) \right| &=& 2\left| \sin (\frac{\theta}{2})\right|\\
+\left| 1 - \cos \left( \frac{2\theta}{2} \right) - i\sin \left(\frac{2\theta}{2} \right) \right| &=& 2\left| \sin (\frac{\theta}{2})\right|\\
+\left| 1 - 1 + 2\sin^2 \left( \frac{\theta}{2} \right) - 2i\cos \left(\frac{\theta}{2} \right)\sin \left(\frac{\theta}{2}\right) \right| &=& 2\left| \sin (\frac{\theta}{2})\right|\\
+2 \left|\sin \left( \frac{\theta}{2} \right) \right| \left| \sin \left( \frac{\theta}{2} \right) - i\cos \left( \frac{\theta}{2} \right) \right| &=& 2\left| \sin (\frac{\theta}{2})\right|\\
+2 \left|\sin \left( \frac{\theta}{2} \right) \right| \left| \cos \left( \frac{\pi}{2} - \theta \right) - i\sin \left( \frac{\pi}{2} - \theta \right) \right| &=& 2\left| \sin (\frac{\theta}{2})\right|\\
+2 \left|\sin \left( \frac{\theta}{2} \right) \right| \left| e^{-i\left( \frac{\pi}{2} - \theta\right)} \right| &=& 2\left| \sin (\frac{\theta}{2})\right|\\
+2 \left|\sin \left( \frac{\theta}{2} \right) \right| 1 &=& 2\left| \sin (\frac{\theta}{2})\right|\\
+2 \left|\sin \left( \frac{\theta}{2} \right) \right| &=& 2\left| \sin (\frac{\theta}{2})\right|&\checkmark
+\end{array}$
+\end{center}
+\end{problem}
+
+\begin{problem}{Root of Unity: 10 pts}
+Prove that if a operator $U$ satisfies $U^r = I$, then the eigenvalues of U must be $r^{th}$ roots of $1$.\\
+If $U$ was unitary, then $U^1\ket{\psi} = \lambda\ket{\psi}$ and since $U$ would be unitary $\lambda$ (the eigenvalue(s) of similar $1's$ we're looking for) would have a magnitude of $1$, so $\lambda = e^{2\pi i\phi}$ where $\phi \in [0,1)$.\\
+\begin{center}
+$\vdots$
+\end{center}
+Now if $U$ is $r$-nary, then $U^r\ket{\psi} = \lambda\ket{\psi}$ and since $U$ would be $r$-nary $\lambda$  would have a magnitude of $r$, so $\lambda = e^{2\pi i\phi}$ where $\phi \in [0,r)$; for some $r\in\ZZ$ and $\phi\in\RR$.\\
+\end{problem}
+\newpage
+
+\begin{problem}{Gate Approximation: 10 pts}
+As mentioned in class that the implementation of QFT inverse will be difficult if the precision requirement is high for the control rotation gates. Based on the Solovay-Kitaev’s decomposition theorem, there is always a way to approximate a single qubit gate with error at most using $O(log^c\frac{1}{\epsilon})$ gates from the universal gate where the optimal $c$ is some number slightly less than $2$. Please describe (sketch) the proof of this theorem.\\
+This we're both unsure of how to begin without just copying the material from here within the time we have; and already being late with this. So I will reference material from \href{http://home.lu.lv/~sd20008/papers/essays/Solovay-Kitaev.pdf}{here} and admit that I'd look here for at someone who has gone through the work to prove the theorem.\\
+
+URL for paper version: http://home.lu.lv/~sd20008/papers/essays/Solovay-Kitaev.pdf
+\end{problem}
+
+
+\end{document}

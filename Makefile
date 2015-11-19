@@ -1,2 +1,2 @@
 all:
-	pdflatex homework2.tex
+	pdflatex homework3.tex
