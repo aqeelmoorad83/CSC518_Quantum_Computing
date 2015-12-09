@@ -1,0 +1,10 @@
+\beamer@endinputifotherversion {3.24pt}
+\beamer@sectionintoc {1}{Definition}{2}{0}{1}
+\beamer@sectionintoc {2}{Deutsch's problem}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Quantum Solution}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{Classical Solutions}{10}{0}{2}
+\beamer@sectionintoc {3}{Deutsch-Jozsa problem}{13}{0}{3}
+\beamer@sectionintoc {4}{Adaptation for $n = 2$}{16}{0}{4}
+\beamer@subsectionintoc {4}{1}{Quantum Solution}{16}{0}{4}
+\beamer@subsectionintoc {4}{2}{Classical Solution}{20}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{24}{0}{5}
