@@ -1,0 +1,448 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{graphicx,ctable,booktabs, tikz}
+\usepackage{hyperref}
+\usepackage{listings} %for inserting code snippets
+%%%%%%%%%%%%%%%%%Quantum Circuist%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{etex}
+\usepackage[all]{xy}
+\SelectTips{em}{}
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+%\usepackage[all]{xy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{multicol}
+
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\E}{\mathrm{\mathbf{E}}}
+\newcommand{\Var}{\mathrm{\mathbf{Var}}}
+\newcommand{\EE}[1]{\E\left(#1\right)}
+\newcommand{\VV}[1]{\Var\left(#1\right)}
+\newcommand{\s}{\mathrm{span}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\sim}{\mathrm{sim}}
+\renewcommand{\prec}{\mathrm{prec}}
+\newcommand{\fail}{\mathrm{fail}}
+\newcommand{\median}{\mathrm{median}}
+\newcommand{\anc}{\mathrm{anc}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+% \newcommand{\ket}[1]{\left| #1\right\rangle}      % ket vector
+% \newcommand{\bra}[1]{\left\langle #1\right|}      % bra vector
+\newcommand{\kets}[1]{| #1 \rangle}                 % small ket vector
+\newcommand{\bras}[1]{\langle #1 |}                 % small bra vector
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}         % <x|y>
+\newcommand{\ii}{\mathbb{I}}
+
+% the I with two vertical lines
+\newcommand{\twonorm}[1]{\left\| #1\right\|_2}        % norm
+\newcommand{\inftynorm}[1]{\left\| #1\right\|_\infty}
+\newcommand{\norms}[1]{\big\| #1\big\|}          % norm
+
+\newcommand{\tr}{\mathrm{tr}}
+%\newcommand{\qed}{\hfill $\square$}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{remark}{Remark}
+
+
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \end{center}}
+\makeatother
+
+
+%
+%Fancy-header package to modify header/page numbering
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+\lhead{Problem \thesection}
+\chead{}
+\rhead{\thepage}
+\lfoot{\small\scshape CS 518}
+\cfoot{}
+\rfoot{\footnotesize }
+\renewcommand{\headrulewidth}{.3pt}
+\renewcommand{\footrulewidth}{.3pt}
+\setlength\voffset{-0.25in}
+\setlength\textheight{648pt}
+
+%%floor and ceiling%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ofloor{\lfloor\hspace*{-.1cm}\lfloor}{\rfloor\hspace*{-.1cm}\rfloor}
+\DeclarePairedDelimiter\oceil{\lceil\hspace*{-.1cm}\lceil}{\rceil\hspace*{-.1cm}\rceil}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\NN{\mathbb{N}}
+\def\ket#1{\big|{#1}\big>}
+\def\bra#1{\big<{#1}\big|}
+\def\braket#1#2{\big<{#1}\big|{#2}\big>}
+\def\ketbra#1{\big|{#1}\big>\big<{#1}\big|}
+\def\sqtwo{\sqrt{2}}
+\pagestyle{empty}
+\begin{document}
+\centerline{\bf CSC518  \hfill HW \#3}
+\centerline{\bf NAME: Alexander Jansing and Brittany Zeo \hfill \today}
+
+\
+
+\noindent
+
+\begin{problem}{Euclidean Algorithm: 15 pts}
+Let $a,b \in \ZZ^+$ (we're ignoring the negative integers, because they could result in thte same $\gcd$ and ignoring $0$ because the $\gcd$ in all cases would be $0$),
+
+By the Division Algorithm $a = b(q_1) + r_1$, where $b$ goes into $a$ $q_1$ times with a remainder $r_1$ and both $q_1, r_1 \in \ZZ^+$ and $r<b$.
+
+This repeats now for finding $\gcd \left( b,r_1 \right)$ and we get $b = r_1(q_2) + r_2$, where $q_2, r_2 \in \ZZ^+$ and $r_2<r_1$.
+$$\vdots$$
+This repeats now for finding $\gcd \left( r_{n-2},r_{n-1} \right)$ and we get $r_{n-2} = r_{n-1}(q_n) + r_n$, where $q_n, r_n \in \ZZ^+$ and $r_n = 0$.
+
+Since $r_n = 0$, $r_{n-1} = \gcd \left( r_{n-3}, r_{n-2} \right) = \gcd \left( r_{n-4}, r_{n-3} \right) = \cdots = \gcd \left( a, b \right)$.
+\end{problem}
+
+
+\begin{problem}{Shor's Algorithm: 5 + 15 + 10 + 5 pts}
+\begin{enumerate}
+\item[a.)] $N$ is of the order $2^n \approx N$, so we set $n = \ceil{\log_2N}$ as to not lose any data. 
+
+\item[b.)] $N^2 < q = 2^l \leq 2N^2$ is required because we need to be able to break the quantum register into two registers. You need $l$ inputs and $q = 2^l$. We need to find a power of $2$ value for $q$ such that the first register has enough qubits to represent $q-1$ in binary (covering all the values that could possibly be divisors of $N$).
+
+If we wrote $q$ as strictly between $N$ and $2N$ (or even between $N$ and $N^2$) then $q$ could lack the scope needed to find all possible divisors.
+\newpage
+\item[c.)] Find the period, showing all intermediate steps.\\
+$l^x \mod 10$\\ $7^x \mod 10$\\
+$
+\begin{array}{ccccc}
+\ket{\psi_1} &=& \frac{1}{\sqrt{128}}\sum\limits_{x = 0}^{127} \ket{x}\ket{0}^{\otimes n} &=& \frac{1}{\sqrt{128}}\sum\limits_{x = 0}^{127} \ket{x}\ket{0000}\\
+&& n = \ceil{\log_2 10} = 4\\
+\ket{\psi_2} &=& \frac{1}{\sqrt{128}}\sum\limits_{x = 0}^{127} \ket{x}\ket{f(x)} &=& \frac{1}{\sqrt{128}}\left(\begin{array}{c}
+\ket{0}\ket{f(0)} + \\
+\ket{1}\ket{f(1)} + \\
+\ket{2}\ket{f(2)} + \cdots\\
+\cdots + \ket{127}\ket{f(127)} 
+\end{array}\right)\\
+m = \floor{\frac{q}{r}}\\
+f(0) &=& 7^0 &\equiv& 1 \mod 10\\
+f(1) &=& 7^1 &\equiv& 7 \mod 10\\
+f(2) &=& 7^2 &\equiv& 9 \mod 10\\
+f(3) &=& 7^3 &\equiv& 3 \mod 10\\
+-----&-&-------------&-&------------\\
+f(4) &=& 7^4 &\equiv& 1 \mod 10\\
+f(5) &=& 7^5 &\equiv& 7 \mod 10\\
+\vdots&&\vdots&&\vdots\\
+\end{array}
+$\\
+Period is $4$.
+
+\item[d.)] In the second case, the algorithm's complexity is to be blamed on the recursive nature of continued functions and how by definition may not terminate. And after so many layers of recursion, data needs to be stored somewhere to guarantee there is no loss of data.
+\end{enumerate}
+\end{problem}
+\newpage
+
+\begin{problem}{Grover's Algorithm: 15 + 5 + 5 + 5 pts}
+\begin{enumerate}
+\item[a.)]$$\hspace*{1.2cm}\ket{G} \hspace*{.9cm} \ket{B}$$ $$
+\begin{array}{ccc}
+G &=& \left( 
+		\begin{array}{cc}
+		\cos\theta & -\sin\theta\\
+		\sin\theta & \cos\theta		
+		\end{array}
+      \right)
+\end{array}
+$$
+$N = $ size space\\
+$M = $ number of solutions,
+$$\sin\theta = \frac{2\sqrt{M(N-M)}}{N}.$$
+$$\text{Then, }\sin^2\theta = \frac{4M(N-M)}{N^2}.$$
+$$\cos^2\theta + \sin^2\theta = 1.$$
+$$\text{So, }  \cos^2\theta = 1 - \frac{4M(N-M)}{N^2},$$
+$$\text{and }  \cos\theta = \sqrt{1 - \frac{4M(N-M)}{N^2}}.$$
+So now we can rewrite $G$ and bind it between \\ \hspace*{4cm} the minimums and maximums $(0 < \theta < \frac{\pi}{2})$:
+$$
+\begin{array}{ccccc}
+min &\leq& G &\leq& max\\
+\left(\begin{array}{cc}
+		\cos 0 & -\sin 0\\
+		\sin 0 & \cos 0		
+		\end{array}
+      \right) 
+      &\leq& 
+\left(\begin{array}{cc}
+	\sqrt{1 - \frac{4M(N-M)}{N^2}} & -\frac{2\sqrt{M(N-M)}}{N}\\
+	\frac{2\sqrt{M(N-M)}}{N} & \sqrt{1 - \frac{4M(N-M)}{N^2}}
+\end{array}\right) 
+	 &\leq&
+\left(\begin{array}{cc}
+		\cos \frac{\pi}{2} & -\sin \frac{\pi}{2}\\
+		\sin \frac{\pi}{2} & \cos \frac{\pi}{2}		
+		\end{array}
+      \right)\\
+      
+\left(\begin{array}{cc}
+		1 & 0\\
+		0 & 1		
+		\end{array}
+      \right) 
+      &\leq& 
+\left(\begin{array}{cc}
+	\sqrt{1 - \frac{4M(N-M)}{N^2}} & -\frac{2\sqrt{M(N-M)}}{N}\\
+	\frac{2\sqrt{M(N-M)}}{N} & \sqrt{1 - \frac{4M(N-M)}{N^2}}
+\end{array}\right) 
+	 &\leq&
+\left(\begin{array}{cc}
+		0 & -1\\
+		1 & 0
+		\end{array}
+      \right)
+\end{array}
+$$
+And if $M \leq \frac{N}{2}$, then $0 \leq M \leq \frac{N}{2}$:
+
+$$
+\begin{array}{cccccc} M := 0;&
+\left(\begin{array}{cc}
+		1 & 0\\
+		0 & 1		
+		\end{array}
+      \right) 
+      &\leq& 
+\left(\begin{array}{cc}
+	1 & 0\\
+	0 & 1
+\end{array}\right) 
+	 &\leq&
+\left(\begin{array}{cc}
+		0 & -1\\
+		1 & 0
+		\end{array}
+      \right)
+\end{array}
+$$
+
+$$
+\begin{array}{cccccc}M := \frac{N}{2};&
+\left(\begin{array}{cc}
+		1 & 0\\
+		0 & 1		
+		\end{array}
+      \right) 
+      &\leq& 
+\left(\begin{array}{cc}
+	\sqrt{1 - \frac{4\frac{N}{2}(N-\frac{N}{2})}{N^2}} & -\frac{2\sqrt{\frac{N}{2}(N-\frac{N}{2})}}{N}\\
+	\frac{2\sqrt{\frac{N}{2}(N-\frac{N}{2})}}{N} & \sqrt{1 - \frac{4\frac{N}{2}(N-\frac{N}{2})}{N^2}}
+\end{array}\right) 
+	 &\leq&
+\left(\begin{array}{cc}
+		0 & -1\\
+		1 & 0
+		\end{array}
+      \right)
+\end{array}
+$$
+
+$$
+\begin{array}{cccccc}M := \frac{N}{2};&
+\left(\begin{array}{cc}
+		1 & 0\\
+		0 & 1		
+		\end{array}
+      \right) 
+      &\leq& 
+\left(\begin{array}{cc}
+	\sqrt{1 - \frac{2N(\frac{N}{2})}{N^2}} & -\frac{2\sqrt{\frac{N}{2}(\frac{N}{2})}}{N}\\
+	\frac{2\sqrt{\frac{N}{2}(\frac{N}{2})}}{N} & \sqrt{1 - \frac{2N(\frac{N}{2})}{N^2}}
+\end{array}\right) 
+	 &\leq&
+\left(\begin{array}{cc}
+		0 & -1\\
+		1 & 0
+		\end{array}
+      \right)
+\end{array}
+$$
+
+$$
+\begin{array}{cccccc}M := \frac{N}{2};&
+\left(\begin{array}{cc}
+		1 & 0\\
+		0 & 1		
+		\end{array}
+      \right) 
+      &\leq& 
+\left(\begin{array}{cc}
+	0 & -1\\
+	1 & 0
+\end{array}\right) 
+	 &\leq&
+\left(\begin{array}{cc}
+		0 & -1\\
+		1 & 0
+		\end{array}
+      \right).
+\end{array}
+$$
+
+\item[b.)]
+\begin{enumerate}
+\item[1.)] We were unsure how to solve this without the direct method in the notes. Classically requires $\frac{N}{t}$ calls.\\
+\hspace*{1cm} Quantumly, there is a quadratic speed up, so there need to be $$\sqrt{\frac{N}{t}} = \sqrt{\frac{2^{10}}{2^2}} = \sqrt{2^8} = 2^4 = 32 \text{ calls.}$$
+\item[2.)] will do easily for $N = 100$, $M = 4$:
+$$
+\left(\begin{array}{cc}
+	\sqrt{1 - \frac{16(96)}{10000}} - \lambda & -\frac{2\sqrt{4(96)}}{100}\\
+	\frac{2\sqrt{4(96)}}{100} & \sqrt{1 - \frac{4M(N-M)}{10000}} - \lambda
+\end{array}\right)
+$$
+$$\begin{array}{ccc}
+p(\lambda) &=& det\left( \begin{array}{cc}
+	\sqrt{1 - \frac{16(96)}{10000}} - \lambda & -\frac{2\sqrt{4(96)}}{100}\\
+	\frac{2\sqrt{4(96)}}{100} & \sqrt{1 - \frac{16(96)}{10000}} - \lambda
+\end{array} \right)\\
+
+		&=& (.92 - \lambda)^2+(.3919)(-.3919)\\
+	0   &=& (.92 - \lambda)^2+(.3919)(-.3919)\\
+	\lambda   &=& .92 \pm .3919i
+	
+\end{array}$$
+\item[3.)] $\frac{4*32}{1024} = \frac{128}{1024} = \frac{2^7}{2^10} = \frac{1}{8}$
+\end{enumerate} 
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{Quantum Phase Estimation (QPE): 15+ 5 pts}
+\begin{enumerate}
+\item[a.)]
+$$
+\begin{array}{cccc}
+\ket{k_1} -H-R_1-R_3----\\
+\ket{k_2} ----|--|-HR_2--\\
+\ket{k_3} -------|---|-H-\\
+\end{array}
+$$
+$U\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{0} + e^{2\pi i (0.x_1x_2x_3)}\ket{1}) \otimes \frac{1}{\sqrt{2}}(\ket{0} + e^{2\pi i (0.x_2x_3)}\ket{1}) \otimes \frac{1}{\sqrt{2}}(\ket{0} + e^{2\pi i (0.x_3)}\ket{1})$
+$$
+\begin{array}{cccc}
+\ket{0} -H-R_1-R_3----\\
+\ket{0} ----|--|-HR_2--\\
+\ket{0} -------|---|-H-\\
+\end{array}
+$$
+$U\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{0} + e^{2\pi i (0.000)}\ket{1}) \otimes \frac{1}{\sqrt{2}}(\ket{0} + e^{2\pi i (0.00)}\ket{1}) \otimes \frac{1}{\sqrt{2}}(\ket{0} + e^{2\pi i (0.0)}\ket{1})$
+$U\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$
+
+\item[b.)] Eigenvalues: $$\left(\begin{array}{cc}
+		\cos \theta -\lambda & -\sin \theta\\
+		\sin \theta & \cos 0\theta - \lambda	
+		\end{array}
+      \right) $$
+      $0 = (\cos\theta - \lambda)^2+(\sin \theta)(-\sin \theta) \rightarrow \lambda = \cos\theta \pm i\sin\theta.$\\
+      
+      Eigenvectors: First with $\lambda = \cos\theta - i\sin\theta$, 
+      	$$\left(\begin{array}{cc}
+		\cos \theta -\lambda & -\sin \theta\\
+		\sin \theta & \cos \theta - \lambda	
+		\end{array}
+      \right)  =  \left(\begin{array}{cc}
+		\cos \theta -(\cos\theta - i\sin\theta) & -\sin \theta\\
+		\sin \theta & \cos \theta - (\cos\theta - i\sin\theta)	
+		\end{array}
+      \right)$$
+      
+      $$= \left(\begin{array}{cc}
+		i\sin\theta & -\sin \theta\\
+		\sin \theta & i\sin\theta
+		\end{array}
+      \right) $$
+      
+      $$
+      i\sin\theta v_1 - \sin\theta v_2 = 0\\
+      \sin\theta v_1 - i\sin\theta v_2 = 0
+      $$
+      Let $v_2 = t$, then we have $i\sin\theta v_1 = \sin \theta t \Rightarrow v_1 = -it$ and $\sin\theta v_1 = i\sin \theta t \Rightarrow v_1 = it$, this gives us one eigenvector, $\left(\begin{array}{c}-i\\i\end{array}\right)$.
+      
+Similarly, $\lambda = \cos\theta -+ i\sin\theta$, 
+	$$\left(\begin{array}{cc}
+		\cos \theta -\lambda & -\sin \theta\\
+		\sin \theta & \cos \theta - \lambda	
+		\end{array}
+      \right)  =  \left(\begin{array}{cc}
+		\cos \theta -(\cos\theta + i\sin\theta) & -\sin \theta\\
+		\sin \theta & \cos \theta - (\cos\theta + i\sin\theta)	
+		\end{array}
+      \right)$$
+      
+      $$= \left(\begin{array}{cc}
+		-i\sin\theta & -\sin \theta\\
+		\sin \theta & -i\sin\theta	
+		\end{array}
+      \right) $$
+      
+      Let $v_2 = t$, then we have $-i\sin\theta v_1 = \sin \theta t \Rightarrow v_1 = it$ and $\sin\theta v_1 = i\sin \theta t \Rightarrow v_1 = it$, this gives us one eigenvector, $\left(\begin{array}{c}i\\i\end{array}\right)$.
+      
+\end{enumerate}
+
+\end{problem}
+
+\newpage
+\begin{problem}{Random Walk: +5 points}
+Given a symmetric matrix of all real entries, $g_{ij}\in\RR, \forall i,j \in \{1, \cdots, n\}$:
+$$G = \left( \begin{array}{cccccc}
+g_{11} & g_{12} & \cdots & g_{1n}\\
+g_{21} & g_{22} & \cdots & g_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+\vdots & \ddots & \ddots & \vdots\\
+g_{n1} & g_{n2} & \cdots & g_{nn}
+\end{array} \right) = 
+\left( \begin{array}{cccccc}
+g_{11} & g_{12} & \cdots & g_{1n}\\
+g_{12} & g_{22} & \cdots & g_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+\vdots & \ddots & \ddots & \vdots\\
+g_{1n} & g_{2n} & \cdots & g_{nn}
+\end{array} \right)$$
+$G^* = G^T$, so $G^*G = G^2$ and therefore $G$ is normal\footnote{It is also easy to show that one can perform Gaussian Elimination upon a symmetric matrix to reduce to an identity matrix.}.
+\end{problem}
+\end{document}
